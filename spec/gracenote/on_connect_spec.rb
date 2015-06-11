@@ -1,8 +1,16 @@
 require 'spec_helper'
 
 describe Gracenote::OnConnect do
-  it 'validates presence of credentials' do
-    expect(Gracenote::OnConnect::API_KEY).to_not be_nil
+  describe '#setup' do
+    before do
+      Gracenote::OnConnect.configure do |config|
+        config.api_key = ENV['ONCONNECT_API_KEY']
+      end
+    end
+
+    it 'validates presence of credentials' do
+      expect(Gracenote::OnConnect.configuration.api_key).to_not be_nil
+    end
   end
 
   describe 'Theater' do
