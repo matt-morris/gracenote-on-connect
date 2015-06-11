@@ -25,8 +25,8 @@ module Gracenote
 
     class Theater
       def self.find_by_zip(zip)
-        params = { api_key: Gracenote::OnConnect.configuration.api_key, zip: zip }
-        uri = URI("#{Gracenote::OnConnect.configuration.base_url}/theatres")
+        params = { api_key: OnConnect.configuration.api_key, zip: zip }
+        uri = URI("#{OnConnect.configuration.base_url}/theatres")
         uri.query = URI.encode_www_form(params)
 
         results = Net::HTTP.get(uri)
@@ -35,8 +35,8 @@ module Gracenote
       end
 
       def self.showtimes(theater_id, start_date = Date.today.to_s, days = 1)
-        params = { api_key: Gracenote::OnConnect.configuration.api_key, startDate: start_date, numDays: days }
-        uri = URI("#{Gracenote::OnConnect.configuration.base_url}/theatres/#{theater_id}/showings")
+        params = { api_key: OnConnect.configuration.api_key, startDate: start_date, numDays: days }
+        uri = URI("#{OnConnect.configuration.base_url}/theatres/#{theater_id}/showings")
         uri.query = URI.encode_www_form(params)
 
         results = Net::HTTP.get(uri)
