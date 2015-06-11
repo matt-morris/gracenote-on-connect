@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'gracenote/on/connect/version'
+require 'gracenote/on_connect/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "gracenote-on-connect"
-  spec.version       = Gracenote::On::Connect::VERSION
+  spec.name          = "gracenote-on_connect"
+  spec.version       = Gracenote::OnConnect::VERSION
   spec.authors       = ["Matt Morris"]
   spec.email         = ["double.emms@gmail.com"]
   spec.summary       = %q{A wrapper for Gracenote's OnConnect REST API.}

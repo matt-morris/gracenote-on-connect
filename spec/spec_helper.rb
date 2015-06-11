@@ -1,2 +1,2 @@
 require 'pry'
-require 'gracenote/on/connect'
+require 'gracenote/on_connect'
