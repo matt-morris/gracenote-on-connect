@@ -5,13 +5,28 @@ require 'date'
 
 module Gracenote
   module OnConnect
-    API_KEY = ENV['API_KEY']
-    BASE_URL = 'http://data.tmsapi.com/v1.1'
+    class << self
+      attr_accessor :configuration
+    end
+
+    class Configuration
+      attr_accessor :api_key, :base_url
+
+      def initialize
+        @api_key = ENV['ONCONNECT_API_KEY']
+        @base_url = 'http://data.tmsapi.com/v1.1'
+      end
+    end
+
+    def self.configure
+      self.configuration ||= Configuration.new
+      yield configuration
+    end
 
     class Theater
       def self.find_by_zip(zip)
-        params = { api_key: API_KEY, zip: zip }
-        uri = URI("#{BASE_URL}/theatres")
+        params = { api_key: Gracenote::OnConnect.configuration.api_key, zip: zip }
+        uri = URI("#{Gracenote::OnConnect.configuration.base_url}/theatres")
         uri.query = URI.encode_www_form(params)
 
         results = Net::HTTP.get(uri)
@@ -20,8 +35,8 @@ module Gracenote
       end
 
       def self.showtimes(theater_id, start_date = Date.today.to_s, days = 1)
-        params = { api_key: API_KEY, startDate: start_date, numDays: days }
-        uri = URI("#{BASE_URL}/theatres/#{theater_id}/showings")
+        params = { api_key: Gracenote::OnConnect.configuration.api_key, startDate: start_date, numDays: days }
+        uri = URI("#{Gracenote::OnConnect.configuration.base_url}/theatres/#{theater_id}/showings")
         uri.query = URI.encode_www_form(params)
 
         results = Net::HTTP.get(uri)
