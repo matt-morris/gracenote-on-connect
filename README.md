@@ -1,11 +1,11 @@
-# gracenote-on_connect
+# Gracenote::OnConnect
 A wrapper for Gracenote's OnConnect REST API
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'gracenote-on_connect'
+    gem 'gracenote-on_connect', github: 'https://github.com/matt-morris/gracenote-on_connect'
 
 And then execute:
 
@@ -13,7 +13,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install gracenote-on_connect
+    ~~$ gem install gracenote-on_connect~~
 
 ## Usage
 
