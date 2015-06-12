@@ -42,6 +42,9 @@ module Gracenote
         response = Net::HTTP.get_response(uri)
         # binding.pry
         JSON.parse(response.body)
+      rescue JSON::ParserError => e
+        # binding.pry
+        { errors: [e.message] }
       end
     end
   end
