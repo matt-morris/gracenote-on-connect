@@ -29,8 +29,16 @@ module Gracenote
         self.get("theatres", params)
       end
 
-      def self.showtimes(theater_id, start_date = Date.today.to_s, days = 1)
-        params = { api_key: OnConnect.configuration.api_key, startDate: start_date, numDays: days }
+      def self.showtimes(theater_id, start_date: Date.today.to_s, days: 1, size: nil)
+        params = {
+          api_key: OnConnect.configuration.api_key,
+          startDate: start_date,
+          numDays: days,
+          imageSize: size
+        }
+
+        params.select! { |k, v| k unless v.nil? }
+
         self.get("theatres/#{theater_id}/showings", params)
       end
 
